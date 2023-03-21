@@ -3,7 +3,7 @@
 -Iniciar el programa:
 	python run.py 
 
--Test
+-Test:
 	pytest -v
 
 - Ficheros basicos
