@@ -44,7 +44,7 @@ class Cliente():
 class Clientes:
 
     lista = [
-        Cliente('70359624W', 'Roberto', 'Díaz', 666666687),
+        Cliente('50309624W', 'Roberto', 'Díaz', 666666687),
         Cliente('33596246T', 'Manolo', 'López', 6645631234),
         Cliente('20359624J', 'Ana', 'García', 664563234)
     ]
