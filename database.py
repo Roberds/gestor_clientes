@@ -1,4 +1,4 @@
-
+import csv
 class Cliente():
 
     def __init__(self, dni, nombre, apellido, telefono):
@@ -42,12 +42,14 @@ class Cliente():
 
 
 class Clientes:
+    #Cargamos los clientes del fichero csv
+    lista = []
+    with open('clientes.csv', newline='\n', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile, delimiter=';')
+        for dni, nombre, apellido, telefono in reader:
+            cliente = Cliente(dni, nombre, apellido, telefono)
+            lista.append(cliente)
 
-    lista = [
-        Cliente('50309624W', 'Roberto', 'Díaz', 666666687),
-        Cliente('33596246T', 'Manolo', 'López', 6645631234),
-        Cliente('20359624J', 'Ana', 'García', 664563234)
-    ]
 
     @staticmethod
     def buscar(dni):
@@ -59,6 +61,7 @@ class Clientes:
     def crear(dni, nombre, apellido, telefono):
         cliente = Cliente(dni, nombre, apellido, telefono)
         Clientes.lista.append(cliente)
+        Clientes.guardar()
         return cliente
 
 
@@ -69,6 +72,7 @@ class Clientes:
                 Clientes.lista[i].nombre = nombre
                 Clientes.lista[i].apellido = apellido
                 Clientes.lista[i].telefono = telefono
+                Clientes.guardar()
                 return Clientes.lista[i]
 
 
@@ -77,7 +81,14 @@ class Clientes:
         for i, cliente in enumerate(Clientes.lista):
             if cliente.dni == dni:
                 cliente = Clientes.lista.pop(i)
+                Clientes.guardar()
                 return cliente
         
 
+    @staticmethod
+    def guardar():
+        with open('clientes.csv', 'w', newline='\n') as csvfile:
+            writer = csv.writer(csvfile, delimiter=';')
+            for i in Clientes.lista:
+                writer.writerow((i.dni, i.nombre, i.apellido, i.telefono))
     
