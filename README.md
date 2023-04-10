@@ -1,7 +1,11 @@
 - Gestor de clientes en python
 
 -Iniciar el programa:
+	Iterfaz de usuario
 	python run.py 
+
+	Modo terminal
+	python run.py -t
 
 -Test:
 	pytest -v
